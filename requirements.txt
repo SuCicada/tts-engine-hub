@@ -1,0 +1,10 @@
+deprecation
+soundfile
+pydub
+edge_tts
+gTTS
+openai
+fastapi
+uvicorn
+numpy
+python-dotenv
