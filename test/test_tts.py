@@ -10,6 +10,8 @@ from pathlib import Path
 from tts.interface import TTSConfig, AudioWav
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from dotenv import load_dotenv
+load_dotenv("../.env")
 from server import TTS_ENGINES
 from tts import audio_util, file_util
 
@@ -18,7 +20,7 @@ class TestAddition(unittest.TestCase):
     def test_tts_gtts(self):
         engine = TTS_ENGINES["gtts"]
         jj = {"text":
-                  "終わりに、兄弟たち、わたしたちのために祈ってください。主の言葉が、あなたがたのところでそうであったように、速やかに宣べ伝えられ、あがめられるように、",
+                  "十にん",
               "language": "ja", "speed": 1}
         res = engine.get_wav(jj)
         audio_util.play(res)

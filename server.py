@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 import uvicorn
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 
 from tts.engine import EdgeTTS, GoogleTTS, OpenAITTS
 from tts.interface import TTS
@@ -25,6 +26,14 @@ TTS_ENGINES: dict[str:TTS] = {
 }
 
 app = FastAPI()
+# cors
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # @dataclass

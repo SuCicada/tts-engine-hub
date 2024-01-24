@@ -38,12 +38,13 @@ def mp3_to_wav(mp3_bytes: bytes) -> (int, bytes):
     with file_util.MyNamedTemporaryFile() as temp_path:
         with open(temp_path, "wb") as f:
             f.write(mp3_bytes)
-            mp3 = AudioSegment.from_file(temp_path, format="mp3")
-            sampling_rate = mp3.frame_rate
-            wav = io.BytesIO()
-            mp3.export(wav, format="wav")
-            wav_bytes = wav.getvalue()
-            return sampling_rate, wav_bytes
+        print(f"mp3_to_wav: {temp_path}")
+        mp3 = AudioSegment.from_file(temp_path, format="mp3")
+        sampling_rate = mp3.frame_rate
+        wav = io.BytesIO()
+        mp3.export(wav, format="wav")
+        wav_bytes = wav.getvalue()
+        return sampling_rate, wav_bytes
 
 
 def modify_speed(wav: AudioWav, speed) -> AudioWav:
