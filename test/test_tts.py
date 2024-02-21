@@ -44,6 +44,19 @@ class TestAddition(unittest.TestCase):
         res = engine.get_wav(jj)
         audio_util.play(res)
 
+    def test_tts_lain(self):
+        engine = TTS_ENGINES["lain_style_bert_vits2"]
+        # for voice in ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]:
+        # voice = "echo"
+        jj = {"text":
+                  "終わりに、兄弟たち、わたしたちのために祈ってください。主の言葉が、あなたがたのところでそうであったように、速やかに宣べ伝えられ、あがめられるように、",
+              "language": "ja",
+              "speed": 1,
+              # "voice": voice
+              }
+        res = engine.get_wav(jj)
+        audio_util.play(res)
+
     def test(self):
         print("test")
         logging.basicConfig(stream=sys.stderr)

@@ -165,3 +165,8 @@ def play(wav: AudioWav):
     # from pydub.playback import play as pydub_play
     import pydub.playback
     pydub.playback.play(audio)
+
+def get_sampling_rate_from_wab_bytes(wav_bytes: bytes) -> int:
+    with wave.open(io.BytesIO(wav_bytes), 'rb') as wav_file:
+        sampling_rate = wav_file.getframerate()
+    return sampling_rate

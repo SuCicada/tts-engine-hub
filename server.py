@@ -8,7 +8,7 @@ import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from tts.engine import EdgeTTS, GoogleTTS, OpenAITTS
+from tts.engine import *
 from tts.interface import TTS
 
 # Define an enumeration class
@@ -22,7 +22,8 @@ load_dotenv()
 TTS_ENGINES: dict[str:TTS] = {
     "gtts": GoogleTTS(),
     "edge-tts": EdgeTTS(),
-    "openai-tts": OpenAITTS()
+    "openai-tts": OpenAITTS(),
+    "lain_style_bert_vits2": LainStyleBertVits2TTS(),
 }
 
 app = FastAPI()

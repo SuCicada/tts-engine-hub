@@ -10,6 +10,10 @@ class TTSConfig:
     language: str
     speed: float
 
+    @staticmethod
+    def from_dict( _config: dict):
+        return TTSConfig(**{k: v for k, v in _config.items() if k in TTSConfig.__annotations__})
+
 
 @dataclass
 class AudioWav:
