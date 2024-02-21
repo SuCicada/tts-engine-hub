@@ -18,7 +18,7 @@ endif
 service_name = tts-engine-hub
 
 docker-build:
-	$(remote_docker) build -t sucicada/$(service_name):latest .
+	$(remote_docker) build --progress=plain -t sucicada/$(service_name):latest .
 
 docker-push:
 	docker push sucicada/$(service_name):latest
