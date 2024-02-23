@@ -22,7 +22,7 @@ class OpenAITTSConfig(TTSConfig):
         "onyx",  # 低沉
         "nova",  # 偏向女性
         "shimmer"  # 英语口音严重，不好
-    ]
+    ] = "fable"
 
 
 class OpenAITTS(TTS):
