@@ -35,12 +35,13 @@ class TestAddition(unittest.TestCase):
     def test_tts_openai(self):
         engine = TTS_ENGINES["openai-tts"]
         # for voice in ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]:
-        voice = "echo"
+        voice = "onyx"
         jj = {"text":
                   "終わりに、兄弟たち、わたしたちのために祈ってください。主の言葉が、あなたがたのところでそうであったように、速やかに宣べ伝えられ、あがめられるように、",
               "language": "ja",
               "speed": 1,
-              "voice": voice}
+              # "voice": voice
+              }
         res = engine.get_wav(jj)
         audio_util.play(res)
 

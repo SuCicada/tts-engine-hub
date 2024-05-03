@@ -5,7 +5,7 @@ import os
 from dataclasses import dataclass
 
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from tts.engine import *
@@ -45,8 +45,12 @@ app.add_middleware(
 
 @app.post("/ttsapi/generate_audio")
 async def generate_audio(request: Request):
-    params = await request.json()
+    params:dict = await request.json()
     tts_engine: str = params.pop("tts_engine")
+    text: str = params.get("text")
+    if not text:
+        raise HTTPException(status_code=400, detail="text is required")
+
     engine: TTS = TTS_ENGINES[tts_engine]
     loop = asyncio.get_event_loop()
     res = await loop.run_in_executor(None,
