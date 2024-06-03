@@ -1,6 +1,7 @@
 import io
 import tempfile
 from typing import Union, Tuple
+import typing_extensions
 
 import numpy
 import soundfile
@@ -57,7 +58,7 @@ def modify_speed(wav: AudioWav, speed) -> AudioWav:
         return AudioWav(wav.sampling_rate, audio.raw_data)
 
 
-@deprecated(details="use modify_speed instead")
+@typing_extensions.deprecated("use modify_speed instead")
 def modify_speed0(sampling_rate: int, audio_data: numpy.ndarray, speed=1.25) -> numpy.ndarray:
     print("modify_speed", speed)
     # wav = numpy_to_mem_file(audio_data, sampling_rate, )

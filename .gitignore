@@ -9,3 +9,5 @@ gen
 /test/*.wav
 /*.wav
 .env
+__pycache__
+/.pytest_cache

@@ -22,17 +22,6 @@ class AudioWav:
 
 
 class TTS(ABC):
-    # @staticmethod
-    # def get_tts(tts_engine: str):
-    #     if tts_engine == "gtts":
-    #         from tts.Gtts import GoogleTTS
-    #         return GoogleTTS()
-    #     elif tts_engine == "edge-tts":
-    #         from tts.EdgeTTS import EdgeTTS
-    #         return EdgeTTS()
-    #     else:
-    #         raise Exception("tts_engine not support")
-
     # @abstractmethod
     def get_stream(self, config: TTSConfig):
         pass
