@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -7,7 +7,9 @@ WORKDIR /app
 ADD . /app
 
 # Install any needed packages specified in requirements.txt
-RUN make install
+RUN apt update && apt install make && make install &&\
+        rm -rf /var/lib/apt/lists/* &&\
+        apt-get clean && pip cache purge
 
 # Make port 80 available to the world outside this container
 EXPOSE 41402
