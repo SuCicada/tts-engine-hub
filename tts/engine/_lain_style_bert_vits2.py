@@ -1,12 +1,8 @@
 import logging
 import os
-from io import BytesIO
-
 import requests
-from gtts import gTTS
-
+import urllib.parse
 from tts import audio_util
-from tts.audio_util import mp3_to_wav
 from tts.interface import TTS, TTSConfig, AudioWav
 
 logger = logging.getLogger('tts.engine.google')
@@ -27,14 +23,16 @@ class LainStyleBertVits2TTS(TTS):
         lang = self.language_dict[config.language]
 
         url = os.environ["STYLE_BERT_VITS2_API"]
-        req_json = {
+        params = {
             # "tts_engine": "gtts",
             "text": config.text,
             "language": lang,
             "length": config.speed,
             # "voice": "alloy"
         }
-        response = requests.post(url, json=req_json)
+        query_string = urllib.parse.urlencode(params)
+        url = f"{url}?{query_string}"
+        response = requests.post(url)
         wav_bytes = response.content
         sampling_rate = audio_util.get_sampling_rate_from_wab_bytes(wav_bytes)
         # res = response.json()
